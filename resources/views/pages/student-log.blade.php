@@ -59,6 +59,9 @@
                                 <x-base.table.thead>
                                     <x-base.table.tr>
                                         <x-base.table.th class="whitespace-nowrap border-b-0">
+                                            <i data-lucide="hash" class="w-4 h-4 mr-2 text-primary"></i>
+                                        </x-base.table.th>
+                                        <x-base.table.th class="whitespace-nowrap border-b-0">
                                             LRN NUMBER
                                         </x-base.table.th>
                                         <x-base.table.th class="whitespace-nowrap border-b-0">
@@ -73,16 +76,21 @@
                                     </x-base.table.tr>
                                 </x-base.table.thead>
                                 <x-base.table.tbody>
-                                    @foreach ($entranceData as $item)
+                                    @foreach ($entranceData as $index => $item)
                                         <x-base.table.tr class="intro-x">
                                             <x-base.table.td
                                                 class="border-b-0 bg-white !py-3.5 shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
                                                 <div class="flex items-center">
                                                     <div class="flex mt-0.5 font-medium">
-                                                        <i data-lucide="hash" class="w-4 h-4 mr-2 text-primary"></i>
-                                                        {{ $item->{'LRN NO.'} }}
+                                                        {{ $index + 1 }}
                                                     </div>
                                                 </div>
+                                            </x-base.table.td>
+                                            <x-base.table.td
+                                                class="border-b-0 bg-white text-center shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
+                                                <a class="flex items-center underline decoration-dotted" href="#">
+                                                    {{ $item->{'LRN NO.'} }}
+                                                </a>
                                             </x-base.table.td>
                                             <x-base.table.td
                                                 class="border-b-0 bg-white text-center shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
@@ -135,6 +143,9 @@
                                 <x-base.table.thead>
                                     <x-base.table.tr>
                                         <x-base.table.th class="whitespace-nowrap border-b-0">
+                                            <i data-lucide="hash" class="w-4 h-4 mr-2 text-primary"></i>
+                                        </x-base.table.th>
+                                        <x-base.table.th class="whitespace-nowrap border-b-0">
                                             LRN NUMBER
                                         </x-base.table.th>
                                         <x-base.table.th class="whitespace-nowrap border-b-0">
@@ -149,14 +160,21 @@
                                     </x-base.table.tr>
                                 </x-base.table.thead>
                                 <x-base.table.tbody>
-                                    @foreach ($exitData as $item)
+                                    @foreach ($exitData as $index => $item)
                                         <x-base.table.tr class="intro-x">
                                             <x-base.table.td
                                                 class="border-b-0 bg-white !py-3.5 shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                <div class="flex mt-0.5 font-medium">
-                                                    <i data-lucide="hash" class="w-4 h-4 mr-2 text-primary"></i>
-                                                    {{ $item->{'LRN NO.'} }}
+                                                <div class="flex items-center">
+                                                    <div class="flex mt-0.5 font-medium">
+                                                        {{ $index + 1 }}
+                                                    </div>
                                                 </div>
+                                            </x-base.table.td>
+                                            <x-base.table.td
+                                                class="border-b-0 bg-white text-center shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
+                                                <a class="flex items-center underline decoration-dotted" href="#">
+                                                    {{ $item->{'LRN NO.'} }}
+                                                </a>
                                             </x-base.table.td>
                                             <x-base.table.td
                                                 class="border-b-0 bg-white text-center shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
@@ -172,9 +190,7 @@
                                             <x-base.table.td
                                                 class="relative w-56 border-b-0 bg-white py-0 shadow-[20px_3px_20px_#0000000b] before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600 before:dark:bg-darkmode-400">
                                                 <div class="flex items-start">
-                                                    <div class="ml-4">
-                                                        <div class="flex font-medium">
-                                                            <i data-lucide="calendar"
+                                                                                      <i data-lucide="user" class="w-4 h-4 mr-2 text-success"></i>                      <i data-lucide="calendar"
                                                                 class="w-4 h-4 mr-2 text-blue-600"></i>
                                                             {{ $item->{'LOGTIME'} }}
                                                         </div>

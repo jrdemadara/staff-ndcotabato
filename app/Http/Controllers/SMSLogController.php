@@ -67,14 +67,6 @@ class SMSLogController extends Controller
             return strtotime($a->datetimesend) - strtotime($b->datetimesend);
         });
 
-        usort($entranceData, function ($a, $b) {
-            return strcmp($a->FULLNAME, $b->FULLNAME);
-        });
-
-        usort($exitData, function ($a, $b) {
-            return strcmp($a->FULLNAME, $b->FULLNAME);
-        });
-
         return view('pages/sms-log', [
             'layout' => 'top-menu',
             'entranceData' => $entranceData,
