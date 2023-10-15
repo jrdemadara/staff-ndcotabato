@@ -1,0 +1,56 @@
+{
+    "items": [
+        {
+            "STUDENT NAME": "sample data",
+            "LRN NO.": "sample data",
+            "GRADE LEVEL": "sample data",
+            "SECTION": "sample data",
+            "DEPARTMENT": "sample data",
+            "SEMESTER": "sample data",
+            "TRACK": "sample data",
+            "STRAND": "sample data",
+            "LOGDATE": "sample data",
+            "LOGTIME": "sample data",
+            "LOGTYPE": "ENTRANCE"
+        },
+        {
+            "STUDENT NAME": "sample data",
+            "LRN NO.": "sample data",
+            "GRADE LEVEL": "sample data",
+            "SECTION": "sample data",
+            "DEPARTMENT": "sample data",
+            "SEMESTER": "sample data",
+            "TRACK": "sample data",
+            "STRAND": "sample data",
+            "LOGDATE": "sample data",
+            "LOGTIME": "sample data",
+            "LOGTYPE": "EXIT"
+        },
+        {
+            "STUDENT NAME": "sample data",
+            "LRN NO.": "sample data",
+            "GRADE LEVEL": "sample data",
+            "SECTION": "sample data",
+            "DEPARTMENT": "sample data",
+            "SEMESTER": "sample data",
+            "TRACK": "sample data",
+            "STRAND": "sample data",
+            "LOGDATE": "sample data",
+            "LOGTIME": "sample data",
+            "LOGTYPE": "ENTRANCE"
+        },
+        {
+            "STUDENT NAME": "sample data",
+            "LRN NO.": "sample data",
+            "GRADE LEVEL": "sample data",
+            "SECTION": "sample data",
+            "DEPARTMENT": "sample data",
+            "SEMESTER": "sample data",
+            "TRACK": "sample data",
+            "STRAND": "sample data",
+            "LOGDATE": "sample data",
+            "LOGTIME": "sample data",
+            "LOGTYPE": "EXIT"
+        }
+    ]
+}
