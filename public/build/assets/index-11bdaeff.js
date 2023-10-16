@@ -1,1 +1,0 @@
-import{t as e}from"./tailwind-merge-354b9f27.js";const{twMerge:r}=e;document.querySelectorAll("[data-tw-merge]").forEach(t=>{t.setAttribute("class",r(t.getAttribute("class"))),t.removeAttribute("data-tw-merge")});window.twMerge=e;

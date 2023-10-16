@@ -8,6 +8,7 @@ use App\Http\Controllers\EmployeesLogController;
 use App\Http\Controllers\SectionLogController;
 use App\Http\Controllers\SMSLogController;
 use App\Http\Controllers\StudentLogController;
+use App\Http\Controllers\StudentProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,18 +33,21 @@ Route::controller(AuthController::class)->middleware('loggedin')->group(function
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('student-log', [StudentLogController::class, 'index'])->name('student-log');
-    Route::post('student-log', [StudentLogController::class, 'details'])->name('student-log');
+    Route::get('student-log', [StudentLogController::class, 'index'])->name('student-log.index');
+    Route::post('student-log', [StudentLogController::class, 'details'])->name('student-log.details');
 
-    Route::get('section-log', [SectionLogController::class, 'index'])->name('section-log');
-    Route::post('section-log', [SectionLogController::class, 'details'])->name('section-log');
+    Route::get('section-log', [SectionLogController::class, 'index'])->name('section-log.index');
+    Route::post('section-log', [SectionLogController::class, 'details'])->name('section-log.details');
 
-    Route::get('employee-log', [EmployeeLogController::class, 'index'])->name('employee-log');
-    Route::post('employee-log', [EmployeeLogController::class, 'details'])->name('employee-log');
+    Route::get('employee-log', [EmployeeLogController::class, 'index'])->name('employee-log.index');
+    Route::post('employee-log', [EmployeeLogController::class, 'details'])->name('employee-log.details');
 
-    Route::get('employees-log', [EmployeesLogController::class, 'index'])->name('employees-log');
-    Route::post('employees-log', [EmployeesLogController::class, 'details'])->name('employees-log');
+    Route::get('employees-log', [EmployeesLogController::class, 'index'])->name('employees-log.index');
+    Route::post('employees-log', [EmployeesLogController::class, 'details'])->name('employees-log.details');
 
-    Route::get('sms-log', [SMSLogController::class, 'index'])->name('sms-log');
-    Route::post('sms-log', [SMSLogController::class, 'details'])->name('sms-log');
+    Route::get('sms-log', [SMSLogController::class, 'index'])->name('sms-log.index');
+    Route::post('sms-log', [SMSLogController::class, 'details'])->name('sms-log.details');
+
+    Route::get('student-profile', [StudentProfileController::class, 'index'])->name('student-profile.index');
+    Route::post('student-profile', [StudentProfileController::class, 'details'])->name('student-profile.details');
 });

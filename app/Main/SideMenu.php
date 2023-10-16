@@ -14,7 +14,7 @@ class SideMenu
         $menu = [
             'student-log' => [
                 'icon' => 'User',
-                'route_name' => 'student-log',
+                'route_name' => 'student-log.index',
                 'params' => [
                     'layout' => 'top-menu',
                 ],
@@ -22,7 +22,7 @@ class SideMenu
             ],
             'section-log' => [
                 'icon' => 'BoxSelect',
-                'route_name' => 'section-log',
+                'route_name' => 'section-log.index',
                 'params' => [
                     'layout' => 'top-menu',
                 ],
@@ -36,7 +36,7 @@ class SideMenu
                 // Add admin-specific menu items here
                 $menu['employee-log'] = [
                     'icon' => 'User',
-                    'route_name' => 'employee-log',
+                    'route_name' => 'employee-log.index',
                     'params' => [
                         'layout' => 'top-menu',
                     ],
@@ -45,7 +45,7 @@ class SideMenu
 
                 $menu['employees-log'] = [
                     'icon' => 'Users',
-                    'route_name' => 'employees-log',
+                    'route_name' => 'employees-log.index',
                     'params' => [
                         'layout' => 'top-menu',
                     ],
@@ -56,11 +56,20 @@ class SideMenu
 
         $menu['sms-log'] = [
             'icon' => 'MessageCircle',
-            'route_name' => 'sms-log',
+            'route_name' => 'sms-log.index',
             'params' => [
                 'layout' => 'top-menu',
             ],
             'title' => 'SMS',
+        ];
+
+        $menu['student-profile'] = [
+            'icon' => 'Users',
+            'route_name' => 'student-profile.index',
+            'params' => [
+                'layout' => 'top-menu',
+            ],
+            'title' => 'Student Profile',
         ];
 
         return $menu;

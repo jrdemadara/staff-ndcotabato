@@ -17,9 +17,6 @@
   "_popper-0aa08b12.js": {
     "file": "assets/popper-0aa08b12.js"
   },
-  "_tailwind-merge-354b9f27.js": {
-    "file": "assets/tailwind-merge-354b9f27.js"
-  },
   "node_modules/leaflet/dist/images/layers-2x.png": {
     "file": "assets/layers-2x-066daca8.png",
     "src": "node_modules/leaflet/dist/images/layers-2x.png"
@@ -66,12 +63,13 @@
     "src": "resources/images/woman-illustration.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-e248496f.js",
+    "file": "assets/app-91e3b7a1.js",
     "imports": [
       "__commonjsHelpers-725317a4.js",
-      "_dom-7f8f01b1.js",
-      "_tailwind-merge-354b9f27.js",
-      "resources/js/vendor/svg-loader/index.js"
+      "resources/js/vendor/dom/index.js",
+      "resources/js/vendor/tailwind-merge/index.js",
+      "resources/js/vendor/svg-loader/index.js",
+      "_dom-7f8f01b1.js"
     ],
     "isEntry": true,
     "src": "resources/js/app.js"
@@ -521,10 +519,7 @@
     "src": "resources/js/vendor/tabulator/index.js"
   },
   "resources/js/vendor/tailwind-merge/index.js": {
-    "file": "assets/index-11bdaeff.js",
-    "imports": [
-      "_tailwind-merge-354b9f27.js"
-    ],
+    "file": "assets/index-9b07a190.js",
     "isEntry": true,
     "src": "resources/js/vendor/tailwind-merge/index.js"
   },

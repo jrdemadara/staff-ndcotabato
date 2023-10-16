@@ -11,7 +11,7 @@
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y box mt-5 p-5">
         <div class="flex flex-col sm:flex-row sm:items-end xl:items-end mt-10">
-            <form action="{{ route('sms-log') }}" method="POST" class="sm:mr-auto xl:flex">
+            <form action="{{ route('sms-log.details') }}" method="POST" class="sm:mr-auto xl:flex">
                 @csrf
                 <div class="items-center sm:mr-4 sm:flex">
                     <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
@@ -45,6 +45,7 @@
                 </div>
             </form>
         </div>
+
         <div class="scrollbar-hidden overflow-x-auto">
             <div class="intro-y col-span-12 overflow-auto 2xl:overflow-visible">
                 <div class="p-5 z-0">

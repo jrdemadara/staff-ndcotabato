@@ -1,7 +1,7 @@
 @extends('../layouts/' . $layout)
 
 @section('subhead')
-    <title>Student Log - Notre Dame of Cotabato</title>
+    <title>Student Profile - Notre Dame of Cotabato</title>
 @endsection
 
 @section('subcontent')
@@ -11,31 +11,47 @@
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y box mt-5 p-5">
         <div class="flex flex-col sm:flex-row sm:items-end xl:items-end mt-10">
-            <form action="{{ route('student-log.details') }}" method="POST" class="sm:mr-auto xl:flex">
+            <form action="{{ route('student-profile.details') }}" method="POST" class="sm:mr-auto xl:flex">
                 @csrf
                 <div class="items-center sm:mr-4 sm:flex">
                     <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
-                        Students
+                        Grade
                     </label>
-                    <x-base.tom-select class="mt-2 w-full sm:w-80 sm:mt-0" id="student" name="student">
-                        @if (@isset($selectedStudent))
-                            <option selected value="{{ $selectedStudent[0]->lrnno }}">{{ $selectedStudent[0]->fullname }}
+                    <x-base.tom-select class="mt-2 w-full sm:w-80 sm:mt-0" id="grade" name="grade">
+                        @if (@isset($selectedGrade))
+                            <option selected value="{{ $selectedGrade[0]->graserial }}">{{ $selectedGrade[0]->graname }}
                             </option>
                         @else
-                            <option selected disabled hidden>Select Student</option>
+                            <option selected disabled hidden>All</option>
                         @endif
-                        @if (@isset($students))
-                            @foreach ($students as $student)
-                                <option value="{{ $student->lrnno }}">{{ $student->fullname }}</option>
+                        @if (@isset($grades))
+                            @foreach ($grades as $grades)
+                                <option value="{{ $grades->graserial }}">{{ $grades->graname }}</option>
+                            @endforeach
+                        @endif
+                    </x-base.tom-select>
+                </div>
+                <div class="items-center sm:mr-4 sm:flex">
+                    <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
+                        Section
+                    </label>
+                    <x-base.tom-select class="mt-2 w-full sm:w-80 sm:mt-0" id="section" name="section">
+                        @if (@isset($selectedSection))
+                            <option selected value="{{ $selectedSection[0]->secserial }}">{{ $selectedSection[0]->secname }}
+                            </option>
+                        @else
+                            <option selected disabled hidden>All</option>
+                        @endif
+                        @if (@isset($sections))
+                            @foreach ($sections as $sections)
+                                <option value="{{ $sections->secserial }}">{{ $sections->secname }}</option>
                             @endforeach
                         @endif
                     </x-base.tom-select>
                 </div>
                 <div class="mt-2 items-center sm:mr-4 sm:flex xl:mt-0">
-                    <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
-                        Date Range
-                    </label>
-                    <x-base.litepicker class="mt-2 w-full sm:w-52 sm:mt-0" id="daterange" name="daterange" />
+                    <x-base.form-input id="horizontal-form-1" type="text" id="fullname" name="fullname"
+                        placeholder="Student Name (optional)" />
                 </div>
                 <div class="mt-5 xl:mt-0">
                     <x-base.button type="submit" class="mr-2 w-full" variant="primary">
@@ -66,13 +82,31 @@
                                             LRN NUMBER
                                         </x-base.table.th>
                                         <x-base.table.th class="whitespace-nowrap border-b-0">
+                                            FULLNAME
+                                        </x-base.table.th>
+                                        <x-base.table.th class="whitespace-nowrap border-b-0">
+                                            BIRTHDATE
+                                        </x-base.table.th>
+                                        <x-base.table.th class="whitespace-nowrap border-b-0">
+                                            AGE
+                                        </x-base.table.th>
+                                        <x-base.table.th class="whitespace-nowrap border-b-0">
+                                            GENDER
+                                        </x-base.table.th>
+                                        <x-base.table.th class="whitespace-nowrap border-b-0">
                                             GRADE
                                         </x-base.table.th>
                                         <x-base.table.th class="whitespace-nowrap border-b-0">
                                             SECTION
                                         </x-base.table.th>
+                                        <x-base.table.th class="whitespace-nowrap border-b-0">
+                                            PARENTS/GUARDIANS
+                                        </x-base.table.th>
+                                        <x-base.table.th class="whitespace-nowrap border-b-0">
+                                            CONTACT NUMBER
+                                        </x-base.table.th>
                                         <x-base.table.th class="whitespace-nowrap border-b-0 text-center">
-                                            LOG DATE
+                                            ADDRESS
                                         </x-base.table.th>
                                     </x-base.table.tr>
                                 </x-base.table.thead>

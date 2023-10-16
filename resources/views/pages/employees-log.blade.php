@@ -11,7 +11,7 @@
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y box mt-5 p-5">
         <div class="flex flex-col sm:flex-row sm:items-end xl:items-end mt-10">
-            <form action="{{ route('employees-log') }}" method="POST" class="sm:mr-auto xl:flex">
+            <form action="{{ route('employees-log.details') }}" method="POST" class="sm:mr-auto xl:flex">
                 @csrf
                 <div class="mt-2 items-center sm:mr-4 sm:flex xl:mt-0">
                     <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
