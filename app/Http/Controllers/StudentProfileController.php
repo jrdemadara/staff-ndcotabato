@@ -10,6 +10,8 @@ class StudentProfileController extends Controller
 {
     public function index(): View
     {
+        $students = DB::select('CALL spProfileOnline()');
+
         $sections = DB::table('section')
             ->select('secserial', 'secname')
             ->where('isdelete', '=', 0)
@@ -24,6 +26,7 @@ class StudentProfileController extends Controller
 
         return view('pages/student-profile', [
             'layout' => 'top-menu',
+            'students' => $students,
             'sections' => $sections,
             'grades' => $grades,
         ]);
@@ -32,9 +35,7 @@ class StudentProfileController extends Controller
     public function details(Request $request): View
     {
 
-        $search_fullname = $request->fullname;
-        $search_section = $request->section;
-        $search_grade = $request->grade;
+        $search = $request->search;
         $results = DB::table('profiles as t1')
             ->select([
                 't1.lrnno as lrn',
@@ -51,24 +52,20 @@ class StudentProfileController extends Controller
             ->join('enrollment as t2', 't1.studserial', '=', 't2.studserial')
             ->join('gradelevel as t3', 't2.gradeserial', '=', 't3.graserial')
             ->join('section as t4', 't2.secserial', '=', 't4.secserial')
-            ->where(function ($query) use ($search_fullname, $search_section, $search_grade) {
-                if (!empty($search_fullname)) {
-                    $query->orWhereRaw("LOWER(CONCAT(t1.lastname, ', ', t1.firstname, ' ', t1.middlename, ' ', t1.extension)) LIKE ?", ["%" . strtolower($search_fullname) . "%"]);
-                }
-                if (!empty($search_secserial)) {
-                    $query->orWhere('t4.secserial', '=', $search_section);
-                }
-                if (!empty($search_graserial)) {
-                    $query->orWhere('t3.graserial', '=', $search_grade);
+            ->where(function ($query) use ($search) {
+                if (!empty($search)) {
+                    $query->orWhereRaw("LOWER(CONCAT(t1.lastname, ', ', t1.firstname, ' ', t1.middlename, ' ', t1.extension)) LIKE ?", ["%" . strtolower($search) . "%"]);
+                    $query->orWhereRaw("LOWER(CONCAT(t4.secname)) LIKE ?", ["%" . strtolower($search) . "%"]);
+                    $query->orWhereRaw("LOWER(CONCAT(t3.graname)) LIKE ?", ["%" . strtolower($search) . "%"]);
                 }
             })
             ->orderByRaw("CONCAT(t1.lastname, ', ', t1.firstname, ' ', t1.middlename, ' ', t1.extension) ASC")
             ->get();
 
-        dd($results);
         return view('pages/student-profile', [
             'layout' => 'top-menu',
-            'students' => '',
+            'students' => $results,
+            'search' => $search,
         ]);
     }
 }
