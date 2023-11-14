@@ -10,145 +10,91 @@
     </div>
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y box mt-5 p-5">
-        <div class="flex flex-col sm:flex-row sm:items-end xl:items-end mt-10">
-            <form action="{{ route('student-profile.details') }}" method="POST" class="sm:mr-auto xl:flex">
-                @csrf
-                @if (isset($search))
-                    <div class="mt-2 items-center sm:mr-4 sm:flex xl:mt-0">
-                        <x-base.form-input id="horizontal-form-1" type="text" id="search" name="search"
-                            value="{{ $search }}" placeholder="Search Keyword" />
-                    </div>
-                @else
-                    <div class="mt-2 items-center sm:mr-4 sm:flex xl:mt-0">
-                        <x-base.form-input id="horizontal-form-1" type="text" id="search" name="search"
-                            placeholder="Search Keyword" />
-                    </div>
-                @endif
-
-                <div class="mt-5 xl:mt-0">
-                    <x-base.button type="submit" class="mr-2 w-full" variant="primary">
-                        <x-base.lucide class="mr-2 h-4 w-4" icon="Search" />
-                        Search...
+        <div class="flex flex-col sm:flex-row sm:items-end xl:items-start">
+            <form class="sm:mr-auto xl:flex" id="tabulator-html-filter-form">
+                <div class="items-center sm:mr-4 sm:flex">
+                    <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
+                        Field
+                    </label>
+                    <x-base.form-select class="mt-2 w-full sm:mt-0 sm:w-auto 2xl:w-full" id="tabulator-html-filter-field">
+                        <option value="fullname">Name</option>
+                        <option value="grade">Grade</option>
+                        <option value="section">Section</option>
+                        <option value="address">Address</option>
+                        <option value="parent">Parent</option>
+                        <option value="age">Age</option>
+                        <option value="gender">Gender</option>
+                    </x-base.form-select>
+                </div>
+                <div class="mt-2 items-center sm:mr-4 sm:flex xl:mt-0">
+                    <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
+                        Type
+                    </label>
+                    <x-base.form-select class="mt-2 w-full sm:mt-0 sm:w-auto" id="tabulator-html-filter-type">
+                        <option value="like">like</option>
+                        <option value="=">=</option>
+                        <option value="<">&lt;</option>
+                        <option value="<=">&lt;=</option>
+                        <option value=">">&gt;</option>
+                        <option value=">=">&gt;=</option>
+                        <option value="!=">!=</option>
+                    </x-base.form-select>
+                </div>
+                <div class="mt-2 items-center sm:mr-4 sm:flex xl:mt-0">
+                    <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
+                        Value
+                    </label>
+                    <x-base.form-input class="mt-2 sm:mt-0 sm:w-40 2xl:w-full" id="tabulator-html-filter-value"
+                        type="text" placeholder="Search..." />
+                </div>
+                <div class="mt-2 xl:mt-0">
+                    <x-base.button class="w-full sm:w-16" id="tabulator-html-filter-go" type="button" variant="primary">
+                        Go
+                    </x-base.button>
+                    <x-base.button class="mt-2 w-full sm:mt-0 sm:ml-1 sm:w-16" id="tabulator-html-filter-reset"
+                        type="button" variant="secondary">
+                        Reset
                     </x-base.button>
                 </div>
             </form>
-        </div>
-        <div class="scrollbar-hidden overflow-x-auto">
-            <div class="intro-y col-span-12 overflow-auto 2xl:overflow-visible">
-                <div class="p-5 z-0">
-                    <div class="flex flex-col items-center border-b border-slate-200/60 p-5 sm:flex-row">
-                        <h2 class="mr-auto text-base font-medium">
-                            STUDENT PROFILES
-                        </h2>
-                    </div>
-                    <div class="flex flex-col sm:flex-row sm:items-end xl:items-start">
-                        @if (isset($students) && !empty($students))
-                            <x-base.table class="-mt-2 border-separate border-spacing-y-[10px]">
-                                <x-base.table.thead>
-                                    <x-base.table.tr>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            <i data-lucide="hash" class="w-4 h-4 mr-2"></i>
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            LRN NUMBER
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            FULLNAME
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            BIRTHDATE
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            AGE
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            GENDER
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            GRADE
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            SECTION
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0">
-                                            ADDRESS
-                                        </x-base.table.th>
-                                        <x-base.table.th class="whitespace-nowrap border-b-0 text-center">
-                                            PARENTS/GUARDIANS
-                                        </x-base.table.th>
-                                    </x-base.table.tr>
-                                </x-base.table.thead>
-                                <x-base.table.tbody>
-                                    @foreach ($students as $index => $item)
-                                        <x-base.table.tr class="intro-x">
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white !py-3.5 shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                <div class="flex items-center">
-                                                    <div class="flex mt-0.5 font-medium">
-                                                        {{ $index + 1 }}
-                                                    </div>
-                                                </div>
-                                            </x-base.table.td>
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white text-center shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                <a class="flex items-center underline decoration-dotted" href="#">
-                                                    {{ $item->{'lrn'} }}
-                                                </a>
-                                            </x-base.table.td>
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                {{ $item->{'fullname'} }}
-                                            </x-base.table.td>
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white capitalize shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                {{ $item->{'birthdate'} }}
-                                            </x-base.table.td>
-
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white capitalize shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                {{ $item->{'age'} }}
-                                            </x-base.table.td>
-
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white capitalize shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                {{ $item->{'gender'} }}
-                                            </x-base.table.td>
-
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white capitalize shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                {{ $item->{'grade'} }}
-                                            </x-base.table.td>
-
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white capitalize shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                {{ $item->{'section'} }}
-                                            </x-base.table.td>
-
-                                            <x-base.table.td
-                                                class="border-b-0 bg-white capitalize shadow-[20px_3px_20px_#0000000b] first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600">
-                                                {{ $item->{'address'} }}
-                                            </x-base.table.td>
-                                            <x-base.table.td
-                                                class="relative w-56 border-b-0 bg-white py-0 shadow-[20px_3px_20px_#0000000b] before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 first:rounded-l-md last:rounded-r-md dark:bg-darkmode-600 before:dark:bg-darkmode-400">
-                                                <div class="flex flex-col items-start">
-                                                    <a class="whitespace-nowrap font-medium" href="">
-                                                        {{ $item->{'parent'} }}
-                                                    </a>
-                                                    <div class="mt-0.5 whitespace-nowrap text-xs text-slate-500">
-                                                        {{ $item->{'contact'} }}
-                                                    </div>
-                                                </div>
-                                            </x-base.table.td>
-                                        </x-base.table.tr>
-                                    @endforeach
-                                </x-base.table.tbody>
-                            </x-base.table>
-                        @else
-                            <p class="p-5 font-medium text-md text-warning">No entrance data available.</p>
-                        @endif
-                    </div>
-                </div>
+            <div class="mt-5 flex sm:mt-0">
+                <x-base.button class="mr-2 w-1/2 sm:w-auto" id="tabulator-print" variant="outline-secondary">
+                    <x-base.lucide class="mr-2 h-4 w-4" icon="Printer" /> Print
+                </x-base.button>
+                <x-base.menu class="w-1/2 sm:w-auto">
+                    <x-base.menu.button class="w-full sm:w-auto" as="x-base.button" variant="outline-secondary">
+                        <x-base.lucide class="mr-2 h-4 w-4" icon="FileText" /> Export
+                        <x-base.lucide class="ml-auto h-4 w-4 sm:ml-2" icon="ChevronDown" />
+                    </x-base.menu.button>
+                    <x-base.menu.items class="w-40">
+                        <x-base.menu.item id="tabulator-export-csv">
+                            <x-base.lucide class="mr-2 h-4 w-4" icon="FileText" /> Export CSV
+                        </x-base.menu.item>
+                        <x-base.menu.item id="tabulator-export-xlsx">
+                            <x-base.lucide class="mr-2 h-4 w-4" icon="FileText" /> Export
+                            XLSX
+                        </x-base.menu.item>
+                    </x-base.menu.items>
+                </x-base.menu>
             </div>
         </div>
+        <div class="scrollbar-hidden overflow-x-auto">
+            <div class="mt-5" id="tabulator"></div>
+        </div>
     </div>
+    <!-- END: HTML Table Data -->
 @endsection
+
+@once
+    @push('vendors')
+        @vite('resources/js/vendor/tabulator/index.js')
+        @vite('resources/js/vendor/lucide/index.js')
+        @vite('resources/js/vendor/xlsx/index.js')
+    @endpush
+@endonce
+
+@once
+    @push('scripts')
+        @vite('resources/js/pages/tabulator/student-profile.js')
+    @endpush
+@endonce

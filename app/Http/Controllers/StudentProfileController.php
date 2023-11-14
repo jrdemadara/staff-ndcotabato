@@ -10,26 +10,16 @@ class StudentProfileController extends Controller
 {
     public function index(): View
     {
-        $students = DB::select('CALL spProfileOnline()');
-
-        $sections = DB::table('section')
-            ->select('secserial', 'secname')
-            ->where('isdelete', '=', 0)
-            ->orderBy('secname', 'asc')
-            ->get();
-
-        $grades = DB::table('gradelevel')
-            ->select('graserial', 'graname')
-            ->where('isdelete', '=', 0)
-            ->orderBy('sequence', 'asc')
-            ->get();
-
         return view('pages/student-profile', [
             'layout' => 'top-menu',
-            'students' => $students,
-            'sections' => $sections,
-            'grades' => $grades,
         ]);
+    }
+
+    public function populate()
+    {
+        $students = DB::select('CALL spProfileOnline()');
+
+        return response()->json($students);
     }
 
     public function details(Request $request): View

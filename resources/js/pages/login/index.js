@@ -19,15 +19,17 @@
 
         axios
             .post(`login`, {
-                email: email+'@ndcotabato.info',
+                email: email + "@ndcotabato.info",
                 password: password,
             })
             .then((res) => {
-                location.href = "student-log";
+                location.href = "student-profile";
             })
             .catch((err) => {
                 $("#btn-login").html("Login");
-                if (err.response.data.message != "Wrong username or password.") {
+                if (
+                    err.response.data.message != "Wrong username or password."
+                ) {
                     for (const [key, val] of Object.entries(
                         err.response.data.errors
                     )) {

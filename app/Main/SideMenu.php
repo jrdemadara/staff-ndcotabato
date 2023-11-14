@@ -12,6 +12,14 @@ class SideMenu
     public static function menu(): array
     {
         $menu = [
+            'student-profile' => [
+                'icon' => 'Users',
+                'route_name' => 'student-profile.index',
+                'params' => [
+                    'layout' => 'top-menu',
+                ],
+                'title' => 'Student Profile',
+            ],
             'student-log' => [
                 'icon' => 'User',
                 'route_name' => 'student-log.index',

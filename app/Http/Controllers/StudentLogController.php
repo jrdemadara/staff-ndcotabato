@@ -11,15 +11,21 @@ class StudentLogController extends Controller
 {
     public function index(): View
     {
+
+        return view('pages/student-log', [
+            'layout' => 'top-menu',
+        ]);
+    }
+
+    public function populate()
+    {
         $students = DB::table('profiles')
             ->select('lrnno', DB::raw('CONCAT(lastname, " ", firstname, " ", middlename) AS fullname'))
             ->where('isdelete', '=', 0)
             ->orderBy('lastname', 'asc')
             ->get();
-        return view('pages/student-log', [
-            'layout' => 'top-menu',
-            'students' => $students,
-        ]);
+
+        return response()->json($students);
     }
 
     public function details(Request $request): View
