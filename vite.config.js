@@ -61,8 +61,11 @@ export default defineConfig({
                 "resources/js/pages/modal/index.js",
                 "resources/js/pages/notification/index.js",
                 "resources/js/pages/slideover/index.js",
-                "resources/js/pages/tabulator/index.js",
                 "resources/js/pages/validation/index.js",
+                "resources/js/pages/tabulator/student-profile.js",
+                "resources/js/pages/tabulator/student-log.js",
+                "resources/js/pages/tabulator/sms-log.js",
+                "resources/js/pages/tabulator/employee-log.js",
 
                 // Layouts
                 "resources/js/layouts/side-menu/index.js",
