@@ -14,7 +14,7 @@
         $("#tabulator-html-filter-submit-date").on("click", function (event) {
             // Setup Tabulator
             const tabulator = new Tabulator("#tabulator", {
-                ajaxURL: "http://127.0.0.1:8000/employee-log-tabulator",
+                ajaxURL: "https://staff.ndcotabato.info/employee-log-tabulator",
                 ajaxParams: {
                     key1: formatedStartDate,
                     key2: formatedEndDate,
@@ -27,7 +27,8 @@
                         Accept: "application/json",
                         "X-Requested-With": "XMLHttpRequest",
                         "Content-type": "application/json; charset=utf-8",
-                        "Access-Control-Allow-Origin": "http://127.0.0.1:8000",
+                        "Access-Control-Allow-Origin":
+                            "https://staff.ndcotabato.info",
                     },
                 },
                 sortMode: "remote",

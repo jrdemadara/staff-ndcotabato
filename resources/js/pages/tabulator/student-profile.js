@@ -4,7 +4,7 @@
     if ($("#tabulator").length) {
         // Setup Tabulator
         const tabulator = new Tabulator("#tabulator", {
-            ajaxURL: "http://127.0.0.1:8000/student-profile-tabulator",
+            ajaxURL: "https://staff.ndcotabato.info/student-profile-tabulator",
             ajaxConfig: {
                 method: "GET", //set request type to Position
                 mode: "cors", //set request mode to cors
@@ -14,7 +14,7 @@
                     "X-Requested-With": "XMLHttpRequest", //fix to help some frameworks respond correctly to request
                     "Content-type": "application/json; charset=utf-8", //set the character encoding of the request
                     "Access-Control-Allow-Origin":
-                        "http://http://127.0.0.1:8000", //the URL origin of the site making the request
+                        "https://staff.ndcotabato.info", //the URL origin of the site making the request
                 },
             },
             //progressiveLoad: "load",
