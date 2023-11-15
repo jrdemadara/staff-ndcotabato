@@ -82,8 +82,8 @@
                 },
                 {
                     title: "AGE",
-                    width: 50,
-                    minWidth: 200,
+                    width: 100,
+                    minWidth: 100,
                     field: "age",
                     hozAlign: "center",
                     headerHozAlign: "center",
