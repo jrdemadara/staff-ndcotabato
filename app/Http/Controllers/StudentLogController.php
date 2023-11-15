@@ -11,21 +11,16 @@ class StudentLogController extends Controller
 {
     public function index(): View
     {
-
         return view('pages/student-log', [
             'layout' => 'top-menu',
         ]);
     }
 
-    public function populate()
+    public function populate(Request $request)
     {
-        $students = DB::table('profiles')
-            ->select('lrnno', DB::raw('CONCAT(lastname, " ", firstname, " ", middlename) AS fullname'))
-            ->where('isdelete', '=', 0)
-            ->orderBy('lastname', 'asc')
-            ->get();
+        $data = DB::select('CALL spStudentLog(?,?)', [$request->key1, $request->key2]);
 
-        return response()->json($students);
+        return response()->json($data);
     }
 
     public function details(Request $request): View
@@ -52,7 +47,7 @@ class StudentLogController extends Controller
             ]);
         }
 
-        $result = DB::select('CALL spRptStudentLog(?,?,?)', [$student, $dateFromFormatted, $dateToFormatted]);
+        $result = DB::select('CALL spStudentLog(?,?)', [$dateFromFormatted, $dateToFormatted]);
         $selectedStudent = DB::table('profiles')
             ->select('lrnno', DB::raw('CONCAT(lastname, " ", firstname, " ", middlename) AS fullname'))
             ->where('lrnno', '=', $student)

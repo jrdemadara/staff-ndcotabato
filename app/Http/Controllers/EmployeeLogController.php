@@ -11,16 +11,15 @@ class EmployeeLogController extends Controller
 {
     public function index(): View
     {
-        $employees = DB::table('teacher')
-            ->select('teaserial', DB::raw('CONCAT(lastname, " ", firstname, " ", middlename) AS fullname'))
-            ->where('isdelete', '=', 0)
-            ->orderBy('lastname', 'asc')
-            ->get();
-
         return view('pages/employee-log', [
             'layout' => 'top-menu',
-            'employees' => $employees,
         ]);
+    }
+
+    public function populate(Request $request)
+    {
+        $data = DB::select('CALL spEmployeeLog(?,?)', [$request->key1, $request->key2]);
+        return response()->json($data);
     }
 
     public function details(Request $request): View

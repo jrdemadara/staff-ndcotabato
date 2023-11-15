@@ -28,14 +28,6 @@ class TopMenu
                 ],
                 'title' => 'Student Log',
             ],
-            'section-log' => [
-                'icon' => 'BoxSelect',
-                'route_name' => 'section-log.index',
-                'params' => [
-                    'layout' => 'top-menu',
-                ],
-                'title' => 'Section Log',
-            ],
             // Add other common menu items here...
         ];
 
@@ -49,15 +41,6 @@ class TopMenu
                         'layout' => 'top-menu',
                     ],
                     'title' => 'Employee Log',
-                ];
-
-                $menu['employees-log'] = [
-                    'icon' => 'Users',
-                    'route_name' => 'employees-log.index',
-                    'params' => [
-                        'layout' => 'top-menu',
-                    ],
-                    'title' => 'Employees Log',
                 ];
             }
         }

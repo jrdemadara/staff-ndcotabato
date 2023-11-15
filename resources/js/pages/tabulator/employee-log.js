@@ -2,19 +2,19 @@
     "use strict";
     // Tabulator
     if ($("#tabulator").length) {
+        let date = $("#tabulator-html-filter-date").val();
+        // Format Date
+        const [startDateStr, endDateStr] = date.split("-");
+        const startDate = new Date(startDateStr);
+        const endDate = new Date(endDateStr);
+
+        const formatedStartDate = startDate.toISOString().split("T")[0];
+        const formatedEndDate = endDate.toISOString().split("T")[0];
         // On click submit date button
         $("#tabulator-html-filter-submit-date").on("click", function (event) {
-            let date = $("#tabulator-html-filter-date").val();
-            // Format Date
-            const [startDateStr, endDateStr] = date.split("-");
-            const startDate = new Date(startDateStr);
-            const endDate = new Date(endDateStr);
-
-            const formatedStartDate = startDate.toISOString().split("T")[0];
-            const formatedEndDate = endDate.toISOString().split("T")[0];
             // Setup Tabulator
             const tabulator = new Tabulator("#tabulator", {
-                ajaxURL: "http://127.0.0.1:8000/student-log-tabulator",
+                ajaxURL: "http://127.0.0.1:8000/employee-log-tabulator",
                 ajaxParams: {
                     key1: formatedStartDate,
                     key2: formatedEndDate,
@@ -70,22 +70,15 @@
                         },
                     },
                     {
-                        title: "GRADE/SECTION",
+                        title: "DEPARTMENT",
                         minWidth: 200,
-                        field: "grade",
+                        field: "department",
                         responsive: 1,
                         hozAlign: "start",
                         headerHozAlign: "start",
                         vertAlign: "middle",
                         print: true,
                         download: false,
-                        formatter(cell) {
-                            const response = cell.getData();
-                            return `<div>
-                        <div class="font-medium whitespace-nowrap">${response.grade}</div>
-                        <div class="text-xs text-slate-500 whitespace-nowrap">${response.section}</div>
-                    </div>`;
-                        },
                     },
                     {
                         title: "LOG DATE",
@@ -122,15 +115,8 @@
                         download: true,
                     },
                     {
-                        title: "GRADE",
-                        field: "grade",
-                        visible: false,
-                        print: false,
-                        download: true,
-                    },
-                    {
-                        title: "SECTION",
-                        field: "section",
+                        title: "DEPARTMENT",
+                        field: "department",
                         visible: false,
                         print: false,
                         download: true,

@@ -1825,6 +1825,11 @@ util-deprecate@^1.0.2:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
+vanillajs@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vanillajs/-/vanillajs-1.0.1.tgz#f68525ea9c31e0f2696fe375146c92f642c99284"
+  integrity sha512-2FIybvE8wmKWvYVNqU1kbpjZxAMwMUfRE4SUplGebrAiAcPIUU8cexU6V2qjC2AJqJN3frqoYxnVvpBYf8u9Mg==
+
 vite-plugin-full-reload@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/vite-plugin-full-reload/-/vite-plugin-full-reload-1.0.5.tgz#6cddfa94e51909843bc7156ab728dbac972b8560"

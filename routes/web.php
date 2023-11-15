@@ -4,8 +4,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ColorSchemeController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\EmployeeLogController;
-use App\Http\Controllers\EmployeesLogController;
-use App\Http\Controllers\SectionLogController;
 use App\Http\Controllers\SMSLogController;
 use App\Http\Controllers\StudentLogController;
 use App\Http\Controllers\StudentProfileController;
@@ -41,16 +39,12 @@ Route::middleware('auth')->group(function () {
     Route::get('student-log-tabulator', [StudentLogController::class, 'populate'])->name('student-log.populate');
     Route::post('student-log', [StudentLogController::class, 'details'])->name('student-log.details');
 
-    Route::get('section-log', [SectionLogController::class, 'index'])->name('section-log.index');
-    Route::post('section-log', [SectionLogController::class, 'details'])->name('section-log.details');
-
     Route::get('employee-log', [EmployeeLogController::class, 'index'])->name('employee-log.index');
+    Route::get('employee-log-tabulator', [EmployeeLogController::class, 'populate'])->name('employee-log.populate');
     Route::post('employee-log', [EmployeeLogController::class, 'details'])->name('employee-log.details');
 
-    Route::get('employees-log', [EmployeesLogController::class, 'index'])->name('employees-log.index');
-    Route::post('employees-log', [EmployeesLogController::class, 'details'])->name('employees-log.details');
-
     Route::get('sms-log', [SMSLogController::class, 'index'])->name('sms-log.index');
+    Route::get('sms-log-tabulator', [SMSLogController::class, 'populate'])->name('sms-log.populate');
     Route::post('sms-log', [SMSLogController::class, 'details'])->name('sms-log.details');
 
 });

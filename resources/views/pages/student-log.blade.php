@@ -10,26 +10,25 @@
     </div>
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y box mt-5 p-5">
+
         <div class="flex flex-col sm:flex-row sm:items-end xl:items-start">
             <form class="sm:mr-auto xl:flex" id="tabulator-html-filter-form">
-                <div class="items-center sm:mr-4 sm:flex">
-                    <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
-                        Date Range
-                    </label>
-                    <x-base.litepicker class="mt-2 w-full sm:w-52 sm:mt-0" id="tabulator-html-filter-date" />
+                <div class="items-center sm:mr-4 mb-2 md:mb-0 sm:flex">
+                    <x-base.button class="w-full sm:w-auto" data-tw-toggle="modal" data-tw-target="#datepicker-modal-preview"
+                        href="#" as="a" variant="primary">
+                        Select Date Range
+                    </x-base.button>
                 </div>
                 <div class="items-center sm:mr-4 sm:flex">
                     <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
                         Field
                     </label>
                     <x-base.form-select class="mt-2 w-full sm:mt-0 sm:w-auto 2xl:w-full" id="tabulator-html-filter-field">
-                        <option value="fullname">Name</option>
+                        <option value="fullname">Fullname</option>
                         <option value="grade">Grade</option>
                         <option value="section">Section</option>
-                        <option value="address">Address</option>
-                        <option value="parent">Parent</option>
-                        <option value="age">Age</option>
-                        <option value="gender">Gender</option>
+                        <option value="logdate">Log Date</option>
+                        <option value="logtime">Log Time</option>
                     </x-base.form-select>
                 </div>
                 <div class="mt-2 items-center sm:mr-4 sm:flex xl:mt-0">
@@ -84,11 +83,40 @@
                 </x-base.menu>
             </div>
         </div>
+
         <div class="scrollbar-hidden overflow-x-auto">
             <div class="mt-5" id="tabulator"></div>
         </div>
     </div>
     <!-- END: HTML Table Data -->
+    <!-- BEGIN: Modal Content -->
+    <x-base.dialog id="datepicker-modal-preview">
+        <x-base.dialog.panel>
+            <!-- BEGIN: Modal Header -->
+            <x-base.dialog.title>
+                <h2 class="mr-auto text-base font-medium">
+                    Select Date Range
+                </h2>
+            </x-base.dialog.title>
+            <!-- END: Modal Header -->
+            <!-- BEGIN: Modal Body -->
+            <x-base.dialog.description class="flex">
+                <x-base.litepicker class="mt-2 w-max sm:w-full sm:mt-0" id="tabulator-html-filter-date" />
+            </x-base.dialog.description>
+            <!-- END: Modal Body -->
+            <!-- BEGIN: Modal Footer -->
+            <x-base.dialog.footer class="text-right">
+                <x-base.button class="mr-1 w-20" data-tw-dismiss="modal" type="button" variant="outline-secondary">
+                    Cancel
+                </x-base.button>
+                <x-base.button class="w-20" type="button" variant="primary" id="tabulator-html-filter-submit-date">
+                    Submit
+                </x-base.button>
+            </x-base.dialog.footer>
+            <!-- END: Modal Footer -->
+        </x-base.dialog.panel>
+    </x-base.dialog>
+    <!-- END: Modal Content -->
 @endsection
 @once
     @push('vendors')

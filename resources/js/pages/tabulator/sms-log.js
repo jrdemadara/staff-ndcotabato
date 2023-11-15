@@ -2,19 +2,19 @@
     "use strict";
     // Tabulator
     if ($("#tabulator").length) {
+        let date = $("#tabulator-html-filter-date").val();
+        // Format Date
+        const [startDateStr, endDateStr] = date.split("-");
+        const startDate = new Date(startDateStr);
+        const endDate = new Date(endDateStr);
+
+        const formatedStartDate = startDate.toISOString().split("T")[0];
+        const formatedEndDate = endDate.toISOString().split("T")[0];
         // On click submit date button
         $("#tabulator-html-filter-submit-date").on("click", function (event) {
-            let date = $("#tabulator-html-filter-date").val();
-            // Format Date
-            const [startDateStr, endDateStr] = date.split("-");
-            const startDate = new Date(startDateStr);
-            const endDate = new Date(endDateStr);
-
-            const formatedStartDate = startDate.toISOString().split("T")[0];
-            const formatedEndDate = endDate.toISOString().split("T")[0];
             // Setup Tabulator
             const tabulator = new Tabulator("#tabulator", {
-                ajaxURL: "http://127.0.0.1:8000/student-log-tabulator",
+                ajaxURL: "http://127.0.0.1:8000/sms-log-tabulator",
                 ajaxParams: {
                     key1: formatedStartDate,
                     key2: formatedEndDate,
@@ -54,106 +54,122 @@
 
                     // For HTML table
                     {
-                        title: "FULLNAME",
-                        minWidth: 200,
+                        title: "#",
+                        width: 80,
+                        minWidth: 40,
                         responsive: 1,
-                        field: "fullname",
+                        field: "row",
                         vertAlign: "middle",
                         print: true,
+                        download: false,
+                        formatter: "rownum",
+                    },
+                    {
+                        title: "MESSAGE",
+                        minWidth: 300,
+                        responsive: 1,
+                        field: "message",
+                        vertAlign: "middle",
+                        print: false,
                         download: false,
                         formatter(cell) {
                             const response = cell.getData();
                             return `<div>
-                        <div class="font-medium whitespace-nowrap">${response.fullname}</div>
-                        <div class="text-xs text-slate-500 whitespace-nowrap">${response.lrn}</div>
+                        <div class="flex items-center justify-center">
+                            <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-primary"></i>
+                            ${response.message}
+                        </div>
                     </div>`;
                         },
                     },
                     {
-                        title: "GRADE/SECTION",
-                        minWidth: 200,
-                        field: "grade",
+                        title: "CONTACT NUMBER",
+                        width: 200,
+                        minWidth: 100,
+                        field: "contactno",
                         responsive: 1,
                         hozAlign: "start",
                         headerHozAlign: "start",
                         vertAlign: "middle",
-                        print: true,
+                        print: false,
                         download: false,
                         formatter(cell) {
                             const response = cell.getData();
                             return `<div>
-                        <div class="font-medium whitespace-nowrap">${response.grade}</div>
-                        <div class="text-xs text-slate-500 whitespace-nowrap">${response.section}</div>
+                        <div class="flex items-center justify-center">
+                            <i data-lucide="smartphone" class="w-4 h-4 mr-2 text-warning"></i>
+                            ${response.contactno}
+                        </div>
                     </div>`;
                         },
                     },
                     {
                         title: "LOG DATE",
-                        minWidth: 200,
-                        field: "logdate",
+                        width: 200,
+                        minWidth: 100,
+                        field: "datecreated",
                         responsive: 1,
                         hozAlign: "start",
                         headerHozAlign: "start",
                         vertAlign: "middle",
-                        print: true,
+                        print: false,
                         download: false,
                         formatter(cell) {
                             const response = cell.getData();
                             return `<div>
-                        <div class="font-medium whitespace-nowrap">${response.logtime}</div>
-                        <div class="text-xs text-slate-500 whitespace-nowrap">${response.logdate}</div>
+                        <div class="flex items-center justify-center">
+                            <i data-lucide="calendar" class="w-4 h-4 mr-2 text-blue-600"></i>
+                            ${response.datecreated}
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i data-lucide="send" class="w-4 h-4 mr-2 text-green-600"></i>
+                            ${response.datetimesend}
+                        </div>
                     </div>`;
                         },
                     },
 
                     // For download format
                     {
-                        title: "LRN",
-                        field: "lrn",
+                        title: "MESSAGE",
+                        field: "message",
+                        visible: false,
+                        print: true,
+                        download: true,
+                    },
+                    {
+                        title: "CONTACT NUMBER",
+                        field: "contactno",
+                        visible: false,
+                        print: true,
+                        download: true,
+                    },
+                    {
+                        title: "SMS DRAWER",
+                        field: "smsdrawer",
                         visible: false,
                         print: false,
                         download: true,
                     },
                     {
-                        title: "FULLNAME",
-                        field: "fullname",
+                        title: "DATE CREATED",
+                        field: "datecreated",
                         visible: false,
-                        print: false,
+                        print: true,
                         download: true,
                     },
                     {
-                        title: "GRADE",
-                        field: "grade",
+                        title: "DATE TIME SEND",
+                        field: "datetimesend",
                         visible: false,
-                        print: false,
-                        download: true,
-                    },
-                    {
-                        title: "SECTION",
-                        field: "section",
-                        visible: false,
-                        print: false,
-                        download: true,
-                    },
-                    {
-                        title: "LOG TIME",
-                        field: "logtime",
-                        visible: false,
-                        print: false,
-                        download: true,
-                    },
-                    {
-                        title: "LOG DATE",
-                        field: "logdate",
-                        visible: false,
-                        print: false,
+                        print: true,
                         download: true,
                     },
                     {
                         title: "LOG TYPE",
                         field: "logtype",
                         visible: false,
-                        print: false,
+                        print: true,
                         download: true,
                     },
                 ],
