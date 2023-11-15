@@ -33,18 +33,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('student-profile', [StudentProfileController::class, 'index'])->name('student-profile.index');
     Route::get('student-profile-tabulator', [StudentProfileController::class, 'populate'])->name('student-profile.populate');
-    Route::post('student-profile', [StudentProfileController::class, 'details'])->name('student-profile.details');
 
     Route::get('student-log', [StudentLogController::class, 'index'])->name('student-log.index');
     Route::get('student-log-tabulator', [StudentLogController::class, 'populate'])->name('student-log.populate');
-    Route::post('student-log', [StudentLogController::class, 'details'])->name('student-log.details');
 
     Route::get('employee-log', [EmployeeLogController::class, 'index'])->name('employee-log.index');
     Route::get('employee-log-tabulator', [EmployeeLogController::class, 'populate'])->name('employee-log.populate');
-    Route::post('employee-log', [EmployeeLogController::class, 'details'])->name('employee-log.details');
 
     Route::get('sms-log', [SMSLogController::class, 'index'])->name('sms-log.index');
     Route::get('sms-log-tabulator', [SMSLogController::class, 'populate'])->name('sms-log.populate');
-    Route::post('sms-log', [SMSLogController::class, 'details'])->name('sms-log.details');
 
 });
