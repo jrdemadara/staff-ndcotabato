@@ -54,6 +54,17 @@
 
                     // For HTML table
                     {
+                        title: "#",
+                        width: 80,
+                        minWidth: 40,
+                        responsive: 1,
+                        field: "row",
+                        vertAlign: "middle",
+                        print: true,
+                        download: false,
+                        formatter: "rownum",
+                    },
+                    {
                         title: "FULLNAME",
                         minWidth: 200,
                         responsive: 1,
