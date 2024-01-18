@@ -8,6 +8,11 @@
         const startDate = new Date(startDateStr);
         const endDate = new Date(endDateStr);
 
+        startDate.setMinutes(
+            startDate.getMinutes() - startDate.getTimezoneOffset()
+        );
+        endDate.setMinutes(endDate.getMinutes() - endDate.getTimezoneOffset());
+
         const formatedStartDate = startDate.toISOString().split("T")[0];
         const formatedEndDate = endDate.toISOString().split("T")[0];
         // On click submit date button
