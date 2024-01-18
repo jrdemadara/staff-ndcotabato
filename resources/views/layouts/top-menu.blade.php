@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="py-5 md:py-0">
-        <x-dark-mode-switcher />
+        {{-- <x-dark-mode-switcher /> --}}
         <x-mobile-menu />
         <x-top-bar layout="top-menu" />
         <!-- BEGIN: Top Menu -->
