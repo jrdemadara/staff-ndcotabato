@@ -25,7 +25,20 @@ class SMSLogController extends Controller
 
     public function populate(Request $request)
     {
-        $data = DB::select('CALL spSMSLog(?,?)', [$request->key1, $request->key2]);
-        return response()->json($data);
+
+        $results = DB::table('smsnotification')
+            ->select('*', DB::raw("
+            CASE
+                WHEN message LIKE '%ENTERED%' THEN 'ENTRANCE'
+                WHEN message LIKE '%LEFT%' THEN 'EXIT'
+                ELSE 'UNKNOWN'
+            END as logtype
+        "))
+            ->whereRaw("DATE_FORMAT(datecreated, '%Y-%m-%d') >= ?", [$request->startDate])
+            ->whereRaw("DATE_FORMAT(datecreated, '%Y-%m-%d') <= ?", [$request->endDate])
+            ->orderBy('datecreated', 'asc')
+            ->get();
+
+        return response()->json($results);
     }
 }

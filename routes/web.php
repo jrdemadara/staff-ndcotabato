@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ColorSchemeController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\EmployeeLogController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SMSLogController;
 use App\Http\Controllers\StudentLogController;
 use App\Http\Controllers\StudentProfileController;
@@ -22,6 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('dark-mode-switcher', [DarkModeController::class, 'switch'])->name('dark-mode-switcher');
 Route::get('color-scheme-switcher/{color_scheme}', [ColorSchemeController::class, 'switch'])->name('color-scheme-switcher');
+
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('register', 'index')->name('register.index');
+    Route::post('register', 'register')->name('login.register');
+});
 
 Route::controller(AuthController::class)->middleware('loggedin')->group(function () {
     Route::get('login', 'loginView')->name('login.index');

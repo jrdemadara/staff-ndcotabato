@@ -2,27 +2,30 @@
     "use strict";
     // Tabulator
     if ($("#tabulator").length) {
-        let date = $("#tabulator-html-filter-date").val();
-        // Format Date
-        const [startDateStr, endDateStr] = date.split("-");
-        const startDate = new Date(startDateStr);
-        const endDate = new Date(endDateStr);
-
-        startDate.setMinutes(
-            startDate.getMinutes() - startDate.getTimezoneOffset()
-        );
-        endDate.setMinutes(endDate.getMinutes() - endDate.getTimezoneOffset());
-
-        const formatedStartDate = startDate.toISOString().split("T")[0];
-        const formatedEndDate = endDate.toISOString().split("T")[0];
         // On click submit date button
         $("#tabulator-html-filter-submit-date").on("click", function (event) {
+            let date = $("#tabulator-html-filter-date").val();
+            // Format Date
+            const [startDateStr, endDateStr] = date.split(" - ");
+
+            const parseDate = (dateStr) => {
+                const [year, month, day] = dateStr.split("-").map(Number);
+                return new Date(Date.UTC(year, month - 1, day));
+            };
+
+            const startDate = parseDate(startDateStr);
+            const endDate = parseDate(endDateStr);
+
+            const formattedStartDate = startDate.toISOString().split("T")[0];
+            const formattedEndDate = endDate.toISOString().split("T")[0];
+
             // Setup Tabulator
             const tabulator = new Tabulator("#tabulator", {
-                ajaxURL: "https://staff.ndcotabato.info/employee-log-tabulator",
+                ajaxURL: "http://127.0.0.1:8000/employee-log-tabulator",
+                // ajaxURL: "https://staff.ndcotabato.info/employee-log-tabulator",
                 ajaxParams: {
-                    key1: formatedStartDate,
-                    key2: formatedEndDate,
+                    startDate: formattedStartDate,
+                    endDate: formattedEndDate,
                 },
                 ajaxConfig: {
                     method: "GET",
@@ -33,7 +36,8 @@
                         "X-Requested-With": "XMLHttpRequest",
                         "Content-type": "application/json; charset=utf-8",
                         "Access-Control-Allow-Origin":
-                            "https://staff.ndcotabato.info",
+                            // "https://staff.ndcotabato.info",
+                            "http://127.0.0.1:8000",
                     },
                 },
                 sortMode: "remote",
