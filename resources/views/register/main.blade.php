@@ -1,4 +1,4 @@
-@extends('../themes/base')
+@extends('../layouts/' . $layout)
 
 @section('head')
     <title>Register - Notre Dame of Cotabato</title>
@@ -15,17 +15,18 @@
                 <!-- BEGIN: Register Info -->
                 <div class="hidden min-h-screen flex-col xl:flex">
                     <a class="-intro-x flex items-center pt-5" href="">
-                        <img class="w-6" src="{{ Vite::asset('resources/images/logo.svg') }}" alt="Midone - Tailwind Admin Dashboard Template" />
-                        <span class="ml-3 text-lg text-white"> Enigma </span>
+                        <img class="w-16 h-16" src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo" />
+                        <span class="ml-3 text-lg text-white"> ND Cotabato </span>
                     </a>
                     <div class="my-auto">
-                        <img class="-intro-x -mt-16 w-1/2" src="{{ Vite::asset('resources/images/illustration.svg') }}" alt="Midone - Tailwind Admin Dashboard Template" />
+                        <img class="-intro-x -mt-16 w-1/2" src="{{ Vite::asset('resources/images/illustration.svg') }}" alt="logo" />
                         <div class="-intro-x mt-10 text-4xl font-medium leading-tight text-white">
                             A few more clicks to <br />
                             sign up to your account.
                         </div>
                         <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400">
-                            Manage all your e-commerce accounts in one place
+                            Manage your
+                            account in one place
                         </div>
                     </div>
                 </div>
@@ -41,33 +42,51 @@
                             e-commerce accounts in one place
                         </div>
                         <div class="intro-x mt-8">
-                            <x-base.form-input class="intro-x block min-w-full px-4 py-3 xl:min-w-[350px]" type="text" placeholder="First Name" />
-                            <x-base.form-input class="intro-x mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" type="text" placeholder="Last Name" />
-                            <x-base.form-input class="intro-x mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" type="text" placeholder="Email" />
-                            <x-base.form-input class="intro-x mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" type="text" placeholder="Password" />
-                            <div class="intro-x mt-3 grid h-1 w-full grid-cols-12 gap-4">
-                                <div class="col-span-3 h-full rounded bg-success"></div>
-                                <div class="col-span-3 h-full rounded bg-success"></div>
-                                <div class="col-span-3 h-full rounded bg-success"></div>
-                                <div class="col-span-3 h-full rounded bg-slate-100 dark:bg-darkmode-800"></div>
-                            </div>
-                            <a class="intro-x mt-2 block text-xs text-slate-500 sm:text-sm" href="">
-                                What is a secure password?
-                            </a>
-                            <x-base.form-input class="intro-x mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" type="text" placeholder="Password Confirmation" />
+                            <form id="register-form">
+                                <x-base.form-input class="intro-x block min-w-full px-4 py-3 xl:min-w-[350px]" id="id_number" type="text" placeholder="ID Number" />
+                                <x-base.form-select class="mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" id="user_type">
+                                    <option value="" selected disabled>Select User Type</option>
+                                    <option>Administrator</option>
+                                    <option>I.T</option>
+                                    <option>Teacher</option>
+                                </x-base.form-select>
+                                <x-base.form-select class="mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" id="section">
+                                    <option value="" selected disabled>Select Section</option>
+                                    <option>None</option>
+                                    @if ($sections && $sections->isNotEmpty())
+                                        @foreach ($sections as $section)
+                                            <option value="{{ $section->secserial }}">{{ $section->secname }}</option>
+                                        @endforeach
+                                    @else
+                                        <option disabled>No sections available</option>
+                                    @endif
+                                </x-base.form-select>
+
+                                <x-base.form-input class="intro-x mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" id="password" type="text" placeholder="Password" />
+                                <div class="intro-x mt-3 grid h-1 w-full grid-cols-12 gap-4">
+                                    <div class="col-span-3 h-full rounded bg-success"></div>
+                                    <div class="col-span-3 h-full rounded bg-success"></div>
+                                    <div class="col-span-3 h-full rounded bg-success"></div>
+                                    <div class="col-span-3 h-full rounded bg-slate-100 dark:bg-darkmode-800"></div>
+                                </div>
+                                <a class="intro-x mt-2 block text-xs text-slate-500 sm:text-sm" href="">
+                                    What is a secure password?
+                                </a>
+                                <x-base.form-input class="intro-x mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" id="confirm_password" type="text" placeholder="Password Confirmation" />
+                            </form>
                         </div>
                         <div class="intro-x mt-4 flex items-center text-xs text-slate-600 dark:text-slate-500 sm:text-sm">
                             <x-base.form-check.input class="mr-2 border" id="remember-me" type="checkbox" />
                             <label class="cursor-pointer select-none" for="remember-me">
-                                I agree to the Envato
+                                I agree to the Notre Dame of Cotabato
                             </label>
                             <a class="ml-1 text-primary dark:text-slate-200" href="">
                                 Privacy Policy
                             </a>
-                            .
+
                         </div>
                         <div class="intro-x mt-5 text-center xl:mt-8 xl:text-left">
-                            <x-base.button class="w-full px-4 py-3 align-top xl:mr-3 xl:w-32" variant="primary">
+                            <x-base.button class="w-full px-4 py-3 align-top xl:mr-3 xl:w-32" id="btn-register" variant="primary">
                                 Register
                             </x-base.button>
                             <x-base.button class="mt-3 w-full px-4 py-3 align-top xl:mt-0 xl:w-32" variant="outline-secondary">
@@ -80,4 +99,20 @@
             </div>
         </div>
     </div>
+
+    <!-- BEGIN: Error Notification Content -->
+    <x-base.notification class="flex" id="error-notification-content">
+        <x-base.lucide class="text-danger" icon="x-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Oops...</div>
+            <div class="mt-1 text-slate-500">
+                Please complete all required fields.
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Error Notification Content -->
 @endsection
+
+@pushOnce('scripts')
+    @vite('resources/js/pages/register/index.js')
+@endPushOnce

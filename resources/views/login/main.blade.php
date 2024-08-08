@@ -19,8 +19,7 @@
                         <span class="ml-3 text-lg text-white"> ND Cotabato </span>
                     </a>
                     <div class="my-auto">
-                        <img class="-intro-x -mt-16 w-1/2" src="{{ Vite::asset('resources/images/illustration.svg') }}"
-                            alt="logo" />
+                        <img class="-intro-x -mt-16 w-1/2" src="{{ Vite::asset('resources/images/illustration.svg') }}" alt="logo" />
                         <div class="-intro-x mt-10 text-4xl font-medium leading-tight text-white">
                             A few more clicks to <br />
                             sign in to your account.
@@ -34,8 +33,7 @@
                 <!-- END: Login Info -->
                 <!-- BEGIN: Login Form -->
                 <div class="my-10 flex h-screen py-5 xl:my-0 xl:h-auto xl:py-0">
-                    <div
-                        class="mx-auto my-auto w-full rounded-md bg-white px-5 py-8 shadow-md dark:bg-darkmode-600 sm:w-3/4 sm:px-8 lg:w-2/4 xl:ml-20 xl:w-auto xl:bg-transparent xl:p-0 xl:shadow-none">
+                    <div class="mx-auto my-auto w-full rounded-md bg-white px-5 py-8 shadow-md dark:bg-darkmode-600 sm:w-3/4 sm:px-8 lg:w-2/4 xl:ml-20 xl:w-auto xl:bg-transparent xl:p-0 xl:shadow-none">
                         <h2 class="intro-x text-center text-2xl font-bold xl:text-left xl:text-3xl">
                             Sign In
                         </h2>
@@ -45,12 +43,9 @@
                         </div>
                         <div class="intro-x mt-8">
                             <form id="login-form">
-                                <x-base.form-input class="intro-x login__input block min-w-full px-4 py-3 xl:min-w-[350px]"
-                                    id="email" type="text" value="" placeholder="Username" />
+                                <x-base.form-input class="intro-x login__input block min-w-full px-4 py-3 xl:min-w-[350px]" id="email" type="text" value="" placeholder="Username" />
                                 <div class="login__input-error mt-2 text-danger" id="error-email"></div>
-                                <x-base.form-input
-                                    class="intro-x login__input mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]"
-                                    id="password" type="password" value="" placeholder="Password" />
+                                <x-base.form-input class="intro-x login__input mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" id="password" type="password" value="" placeholder="Password" />
                                 <div class="login__input-error mt-2 text-danger" id="error-password"></div>
                             </form>
                         </div>
@@ -64,14 +59,14 @@
                             <a href="">Forgot Password?</a>
                         </div>
                         <div class="intro-x mt-5 text-center xl:mt-8 xl:text-left">
-                            <x-base.button class="w-full px-4 py-3 align-top xl:mr-3 xl:w-32" id="btn-login"
-                                variant="primary">
+                            <x-base.button class="w-full px-4 py-3 align-top xl:mr-3 xl:w-32" id="btn-login" variant="primary">
                                 Login
                             </x-base.button>
-                            <x-base.button class="mt-3 w-full px-4 py-3 align-top xl:mt-0 xl:w-32"
-                                variant="outline-secondary">
-                                Register
-                            </x-base.button>
+                            <a href="{{ route('register.index') }}">
+                                <x-base.button class="mt-3 w-full px-4 py-3 align-top xl:mt-0 xl:w-32" variant="outline-secondary">
+                                    Register
+                                </x-base.button>
+                            </a>
                         </div>
                         <div class="intro-x mt-10 text-center text-slate-600 dark:text-slate-500 xl:mt-24 xl:text-left">
                             By signin up, you agree to our
