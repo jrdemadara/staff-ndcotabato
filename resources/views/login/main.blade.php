@@ -43,8 +43,8 @@
                         </div>
                         <div class="intro-x mt-8">
                             <form id="login-form">
-                                <x-base.form-input class="intro-x login__input block min-w-full px-4 py-3 xl:min-w-[350px]" id="email" type="text" value="" placeholder="Username" />
-                                <div class="login__input-error mt-2 text-danger" id="error-email"></div>
+                                <x-base.form-input class="intro-x login__input block min-w-full px-4 py-3 xl:min-w-[350px]" id="id_number" type="text" value="" placeholder="ID Number" />
+                                <div class="login__input-error mt-2 text-danger" id="error-id_number"></div>
                                 <x-base.form-input class="intro-x login__input mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" id="password" type="password" value="" placeholder="Password" />
                                 <div class="login__input-error mt-2 text-danger" id="error-password"></div>
                             </form>

@@ -7,6 +7,7 @@ use App\Models\Teachers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class RegisterController extends Controller
@@ -24,16 +25,16 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'id_number' => 'required|string|unique:users,id_number',
-            'password' => 'required|string|min:8|confirmed',
+            'id_number' => 'required|string',
+            'password' => 'required|string|min:6',
             'user_type' => 'required|string',
             'section' => 'required|string',
         ]);
 
         //Check if id number valid
-        if ($this->checkIdNumber($request->input('id_number'))) {
+        if (!$this->checkIdNumber($request->input('id_number'))) {
             return response()->json([
-                'status' => 'failed',
+                'status' => 'invalid-id',
                 'message' => 'id number is invalid.',
                 'data' => null,
             ], 400);
@@ -42,17 +43,17 @@ class RegisterController extends Controller
         //Check if id number is already registered
         if ($this->isIdRegistered($request->input('id_number'))) {
             return response()->json([
-                'status' => 'failed',
+                'status' => 'already-registered',
                 'message' => 'id number is already registered.',
                 'data' => null,
             ], 400);
         }
 
         //Check the user type
-        if ($request->input('user_type') === 'teacher') {
+        if (Str::lower($request->input('user_type')) === 'teacher') {
             if ($this->isSectionRegistered($request->input('section'))) {
                 return response()->json([
-                    'status' => 'failed',
+                    'status' => 'taken',
                     'message' => 'Section is already belong to teacher.',
                     'data' => null,
                 ], 400);
@@ -60,10 +61,10 @@ class RegisterController extends Controller
         }
 
         $user = new User();
-        $user->id_number = $request->input('id_number');
-        $user->password = Hash::make($request->input('password'));
-        $user->user_type = $request->input('user_type');
-        $user->section_id = $request->input('section');
+        $user->id_number = Str::lower($request->id_number);
+        $user->password = Hash::make($request->password);
+        $user->user_type = Str::lower($request->user_type);
+        $user->section_id = $request->section;
         $user->is_active = true;
         $user->profile_id = $this->getTeacherSerial($request->id_number);
 
@@ -84,7 +85,7 @@ class RegisterController extends Controller
 
     private function checkIdNumber($id_number): bool
     {
-        $isExist = Teachers::where('id_no', $id_number)->first();
+        $isExist = Teachers::where('idno', $id_number)->exists();
         return $isExist;
     }
 
@@ -100,7 +101,7 @@ class RegisterController extends Controller
 
     private function getTeacherSerial($id_number): ?string
     {
-        return Teachers::where('id_no', $id_number)->value('teaserial');
+        return Teachers::where('idno', $id_number)->value('teaserial');
     }
 
 }

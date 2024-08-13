@@ -5,7 +5,7 @@
         // Setup Tabulator
         const tabulator = new Tabulator("#tabulator", {
             //ajaxURL: "https://staff.ndcotabato.info/student-profile-tabulator",
-            ajaxURL: "http://127.0.0.1:8000/student-profile-tabulator",
+            ajaxURL: "https://staff.ndcotabato.info/student-profile-tabulator",
             ajaxConfig: {
                 method: "GET", //set request type to Position
                 mode: "cors", //set request mode to cors
@@ -16,7 +16,7 @@
                     "Content-type": "application/json; charset=utf-8", //set the character encoding of the request
                     "Access-Control-Allow-Origin":
                         // "https://staff.ndcotabato.info",
-                        "http://127.0.0.1:8000",
+                        "https://staff.ndcotabato.info",
                 },
             },
             //progressiveLoad: "load",

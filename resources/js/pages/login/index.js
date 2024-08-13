@@ -7,7 +7,7 @@
         $("#login-form").find(".login__input-error").html("");
 
         // Post form
-        let email = $("#email").val();
+        let id_number = $("#id_number").val();
         let password = $("#password").val();
 
         // Loading state
@@ -18,18 +18,17 @@
         await helper.delay(1500);
 
         axios
-            .post(`login`, {
-                email: email + "@ndcotabato.info",
+            .post("login", {
+                id_number: id_number,
                 password: password,
             })
             .then((res) => {
-                location.href = "student-profile";
+                location.href = "home";
             })
             .catch((err) => {
+                console.log(err);
                 $("#btn-login").html("Login");
-                if (
-                    err.response.data.message != "Wrong username or password."
-                ) {
+                if (err.response.data.status != "invalid") {
                     for (const [key, val] of Object.entries(
                         err.response.data.errors
                     )) {

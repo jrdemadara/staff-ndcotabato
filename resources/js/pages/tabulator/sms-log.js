@@ -22,7 +22,7 @@
             // Setup Tabulator
             const tabulator = new Tabulator("#tabulator", {
                 //ajaxURL: "https://staff.ndcotabato.info/sms-log-tabulator",
-                ajaxURL: "http://127.0.0.1:8000/sms-log-tabulator",
+                ajaxURL: "https://staff.ndcotabato.info/sms-log-tabulator",
                 ajaxParams: {
                     startDate: formattedStartDate,
                     endDate: formattedEndDate,
@@ -37,7 +37,7 @@
                         "Content-type": "application/json; charset=utf-8",
                         "Access-Control-Allow-Origin":
                             // "https://staff.ndcotabato.info",
-                            "http://127.0.0.1:8000",
+                            "https://staff.ndcotabato.info",
                     },
                 },
                 sortMode: "remote",

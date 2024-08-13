@@ -66,6 +66,7 @@ export default defineConfig({
                 "resources/js/pages/tabulator/student-log.js",
                 "resources/js/pages/tabulator/sms-log.js",
                 "resources/js/pages/tabulator/employee-log.js",
+                "resources/js/pages/tabulator/section-log.js",
 
                 // Layouts
                 "resources/js/layouts/side-menu/index.js",

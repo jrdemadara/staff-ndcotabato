@@ -47,12 +47,12 @@
                                 <x-base.form-select class="mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" id="user_type">
                                     <option value="" selected disabled>Select User Type</option>
                                     <option>Administrator</option>
-                                    <option>I.T</option>
+                                    <option>IT</option>
                                     <option>Teacher</option>
                                 </x-base.form-select>
                                 <x-base.form-select class="mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]" id="section">
                                     <option value="" selected disabled>Select Section</option>
-                                    <option>None</option>
+                                    <option value="none">None</option>
                                     @if ($sections && $sections->isNotEmpty())
                                         @foreach ($sections as $section)
                                             <option value="{{ $section->secserial }}">{{ $section->secname }}</option>
@@ -76,8 +76,8 @@
                             </form>
                         </div>
                         <div class="intro-x mt-4 flex items-center text-xs text-slate-600 dark:text-slate-500 sm:text-sm">
-                            <x-base.form-check.input class="mr-2 border" id="remember-me" type="checkbox" />
-                            <label class="cursor-pointer select-none" for="remember-me">
+                            <x-base.form-check.input class="mr-2 border" id="policy" type="checkbox" />
+                            <label class="cursor-pointer select-none" for="policy">
                                 I agree to the Notre Dame of Cotabato
                             </label>
                             <a class="ml-1 text-primary dark:text-slate-200" href="">
@@ -89,9 +89,13 @@
                             <x-base.button class="w-full px-4 py-3 align-top xl:mr-3 xl:w-32" id="btn-register" variant="primary">
                                 Register
                             </x-base.button>
-                            <x-base.button class="mt-3 w-full px-4 py-3 align-top xl:mt-0 xl:w-32" variant="outline-secondary">
-                                Sign in
-                            </x-base.button>
+                            <a href="{{ route('login.index') }}">
+                                <x-base.button class="mt-3 w-full px-4 py-3 align-top xl:mt-0 xl:w-32" variant="outline-secondary">
+                                    Sign in
+                                </x-base.button>
+                            </a>
+
+
                         </div>
                     </div>
                 </div>
@@ -111,6 +115,103 @@
         </div>
     </x-base.notification>
     <!-- END: Error Notification Content -->
+
+    <!-- BEGIN: Invalid ID Notification Content -->
+    <x-base.notification class="flex" id="invalid-id-notification-content">
+        <x-base.lucide class="text-danger" icon="x-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Oops...</div>
+            <div class="mt-1 text-slate-500">
+                The id number you provided is invalid.
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Invalid ID Notification Content -->
+
+    <!-- BEGIN: Already Registered Notification Content -->
+    <x-base.notification class="flex" id="already-registered-notification-content">
+        <x-base.lucide class="text-danger" icon="x-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Oops...</div>
+            <div class="mt-1 text-slate-500">
+                The id number you provided is already registered.
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Already Registered Notification Content -->
+
+    <!-- BEGIN: Already Taken Notification Content -->
+    <x-base.notification class="flex" id="taken-notification-content">
+        <x-base.lucide class="text-danger" icon="x-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Oops...</div>
+            <div class="mt-1 text-slate-500">
+                The section you selected is already taken.
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Already Registered Notification Content -->
+
+    <!-- BEGIN: Registration Success Notification Content -->
+    <x-base.notification class="flex" id="success-notification-content">
+        <x-base.lucide class="text-success" icon="check-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Yey!</div>
+            <div class="mt-1 text-slate-500">
+                You can now login to your account.
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Registration Success Notification Content -->
+
+    <!-- BEGIN: Error 500 Notification Content -->
+    <x-base.notification class="flex" id="error-500-notification-content">
+        <x-base.lucide class="text-danger" icon="x-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Oops...</div>
+            <div class="mt-1 text-slate-500">
+                Something went wrong with the server. <br>
+                Please try again later.
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Error 500 Notification Content -->
+
+    <!-- BEGIN: Policy Notification Content -->
+    <x-base.notification class="flex" id="unchecked-notification-content">
+        <x-base.lucide class="text-warning" icon="alert-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Oops...</div>
+            <div class="mt-1 text-slate-500">
+                Please agree to the Privacy Policy. <br>
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Policy Notification Content -->
+
+    <!-- BEGIN: Empty Inputs Notification Content -->
+    <x-base.notification class="flex" id="empty-input-notification-content">
+        <x-base.lucide class="text-warning" icon="alert-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Oops...</div>
+            <div class="mt-1 text-slate-500">
+                Please complete all required fields. <br>
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Empty Inputs Notification Content -->
+
+    <!-- BEGIN: Confirm Password Notification Content -->
+    <x-base.notification class="flex" id="confirm-password-notification-content">
+        <x-base.lucide class="text-warning" icon="alert-circle" />
+        <div class="ml-4 mr-4">
+            <div class="font-medium">Oops...</div>
+            <div class="mt-1 text-slate-500">
+                Password didn't match. <br>
+            </div>
+        </div>
+    </x-base.notification>
+    <!-- END: Confirm Password Notification Content -->
 @endsection
 
 @pushOnce('scripts')

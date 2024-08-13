@@ -4,7 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ColorSchemeController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\EmployeeLogController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SectionLogController;
 use App\Http\Controllers\SMSLogController;
 use App\Http\Controllers\StudentLogController;
 use App\Http\Controllers\StudentProfileController;
@@ -37,6 +39,8 @@ Route::controller(AuthController::class)->middleware('loggedin')->group(function
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'logout'])->name('logout');
 
+    Route::get('home', [HomeController::class, 'index'])->name('home.index');
+
     Route::get('student-profile', [StudentProfileController::class, 'index'])->name('student-profile.index');
     Route::get('student-profile-tabulator', [StudentProfileController::class, 'populate'])->name('student-profile.populate');
 
@@ -48,5 +52,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('sms-log', [SMSLogController::class, 'index'])->name('sms-log.index');
     Route::get('sms-log-tabulator', [SMSLogController::class, 'populate'])->name('sms-log.populate');
+
+    Route::get('section-log', [SectionLogController::class, 'index'])->name('section-log.index');
+    Route::get('section-log-tabulator', [SectionLogController::class, 'populate'])->name('section-log.populate');
+    Route::get('section-date-log-tabulator', [SectionLogController::class, 'populateBySelectedDate'])->name('section-date-log.populate');
 
 });

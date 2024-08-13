@@ -24,13 +24,17 @@ class AuthController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function login(LoginRequest $request): void
+    public function login(LoginRequest $request)
     {
         if (!Auth::attempt([
-            'email' => $request->email,
+            'id_number' => $request->id_number,
             'password' => $request->password,
         ])) {
-            throw new \Exception('Wrong email or password.');
+            return response()->json([
+                'status' => 'invalid',
+                'message' => 'Wrong ID Number or Password.',
+                'data' => null,
+            ], 401);
         }
     }
 
