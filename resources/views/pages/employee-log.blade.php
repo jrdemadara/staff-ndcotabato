@@ -14,8 +14,7 @@
         <div class="flex flex-col sm:flex-row sm:items-end xl:items-start">
             <form class="sm:mr-auto xl:flex" id="tabulator-html-filter-form">
                 <div class="items-center sm:mr-4 mb-2 md:mb-0 sm:flex">
-                    <x-base.button class="w-full sm:w-auto" data-tw-toggle="modal" data-tw-target="#datepicker-modal-preview"
-                        href="#" as="a" variant="primary">
+                    <x-base.button class="w-full sm:w-auto" data-tw-toggle="modal" data-tw-target="#datepicker-modal-preview" href="#" as="a" variant="primary">
                         Select Date Range
                     </x-base.button>
                 </div>
@@ -48,20 +47,32 @@
                     <label class="mr-2 w-12 flex-none xl:w-auto xl:flex-initial">
                         Value
                     </label>
-                    <x-base.form-input class="mt-2 sm:mt-0 sm:w-40 2xl:w-full" id="tabulator-html-filter-value"
-                        type="text" placeholder="Search..." />
+                    <x-base.form-input class="mt-2 sm:mt-0 sm:w-40 2xl:w-full" id="tabulator-html-filter-value" type="text" placeholder="Search..." />
                 </div>
                 <div class="mt-2 xl:mt-0">
                     <x-base.button class="w-full sm:w-16" id="tabulator-html-filter-go" type="button" variant="primary">
                         Go
                     </x-base.button>
-                    <x-base.button class="mt-2 w-full sm:mt-0 sm:ml-1 sm:w-16" id="tabulator-html-filter-reset"
-                        type="button" variant="secondary">
+                    <x-base.button class="mt-2 w-full sm:mt-0 sm:ml-1 sm:w-16" id="tabulator-html-filter-reset" type="button" variant="secondary">
                         Reset
                     </x-base.button>
                 </div>
             </form>
-            <div class="mt-5 flex sm:mt-0">
+            <div class="mt-3 flex items-center space-x-2 sm:ml-auto sm:mt-0">
+                <x-base.button class="flex items-center w-36 bg-blue-200 text-slate-600 dark:text-slate-300">
+                    <x-base.lucide class="mr-2 hidden h-4 w-4 sm:block" icon="Users" />
+                    Employees: <span class="font-bold ml-2">50</span>
+                </x-base.button>
+                <x-base.button class="flex items-center w-36 bg-green-200 text-slate-600 dark:text-slate-300">
+                    <x-base.lucide class="mr-2 hidden h-4 w-4 sm:block" icon="Log-in" />
+                    Ins: <span class="font-bold ml-2">50</span>
+                </x-base.button>
+                <x-base.button class="flex items-center w-36 bg-red-200 text-slate-600 dark:text-slate-300">
+                    <x-base.lucide class="mr-2 hidden h-4 w-4 sm:block" icon="Log-out" />
+                    Outs: <span class="font-bold ml-2">50</span>
+                </x-base.button>
+            </div>
+            {{-- <div class="mt-5 flex sm:mt-0">
                 <x-base.button class="mr-2 w-1/2 sm:w-auto" id="tabulator-print" variant="outline-secondary">
                     <x-base.lucide class="mr-2 h-4 w-4" icon="Printer" /> Print
                 </x-base.button>
@@ -80,7 +91,7 @@
                         </x-base.menu.item>
                     </x-base.menu.items>
                 </x-base.menu>
-            </div>
+            </div> --}}
         </div>
 
         <div class="scrollbar-hidden overflow-x-auto">
